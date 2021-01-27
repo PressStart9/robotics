@@ -3,7 +3,7 @@ from mainApps.models import Posts, Attachments
 
 @admin.register(Posts)
 class AdminPosts(admin.ModelAdmin):
-    list_display = ['posting_date', 'post_id']
+    list_display = ['posting_date', 'post_id', 'text']
 
 
 @admin.register(Attachments)

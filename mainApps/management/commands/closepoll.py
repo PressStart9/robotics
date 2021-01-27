@@ -121,7 +121,7 @@ def check_news():
 
 class Command(BaseCommand):
     def schedule(self):
-        schedule.every(10).seconds.do(check_news)
+        schedule.every(10).minutes.do(check_news)
 
         while 1:
             schedule.run_pending()

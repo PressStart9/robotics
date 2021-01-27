@@ -7,7 +7,7 @@ class Posts(models.Model):
     post_id = models.IntegerField()
     posting_date = models.DateTimeField()
     main_history = models.ForeignKey('self', blank=True, null=True, related_name='copy_history',
-                                     on_delete=models.DO_NOTHING)
+                                     on_delete=models.CASCADE)
     text = models.TextField(null=True)
 
     class Meta:
@@ -17,7 +17,7 @@ class Posts(models.Model):
 
 
 class Attachments(models.Model):
-    connect_post = models.ForeignKey(Posts, null=True, related_name='atachs', on_delete=models.SET_NULL)
+    connect_post = models.ForeignKey(Posts, null=True, related_name='atachs', on_delete=models.CASCADE)
     type = models.TextField()
     preview = models.TextField(blank=True)
     url = models.TextField()
