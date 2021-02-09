@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'mainApps.templatetags',
     'mainApps',
     'mainApps.management.commands',
+    'el_pagination',
 ]
 
 MIDDLEWARE = [

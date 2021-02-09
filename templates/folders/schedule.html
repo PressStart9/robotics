@@ -1,0 +1,14 @@
+{% extends 'hatpage.html' %}
+{% load poll_extras %}
+{% block content %}
+<body>
+    <div class="container">
+      <div class="jumbotron">
+          <style>
+              .first-step { margin-top: 50px }
+          </style>
+          <img src="{{ wall_content.0.atachs.0.url }}">
+      </div>
+    </div>
+</body>
+{% endblock content %}
