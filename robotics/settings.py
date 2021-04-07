@@ -88,9 +88,13 @@ WSGI_APPLICATION = 'robotics.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'post_db.sqlite3'),
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2', #Used 'django.db.backends.postgresql' as well
+            'NAME': 'd8it090ko7iu69',
+            'USER': 'mjebqmcwbksbqj',
+            'PASSWORD': 'd7538ae6004706b238711d25a53837a6eadd936d1cdfaf6d5378c16f5a508821',
+            'HOST': 'ec2-34-252-251-16.eu-west-1.compute.amazonaws.com',
+            'PORT': '5432',
     }
 }
 
