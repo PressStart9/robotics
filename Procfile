@@ -1,2 +1,1 @@
-web: gunicorn robotics.wsgi --log-file -
-heroku ps:scale web=1
+web: gunicorn -pythonpath robotics robotics.wsgi
