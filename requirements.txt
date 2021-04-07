@@ -1,6 +1,7 @@
 django
-django_heroku
+django-heroku
 schedule
 datetime
 asyncio
 django-el-pagination
+gunicorn
