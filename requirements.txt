@@ -3,3 +3,4 @@ django_heroku
 schedule
 datetime
 asyncio
+django-el-pagination
