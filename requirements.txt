@@ -5,5 +5,4 @@ datetime
 asyncio
 django-el-pagination
 gunicorn
-herokuapp
 requests
