@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'mainApps',
     'mainApps.management.commands',
     'el_pagination',
-    'herokuapp',
 ]
 
 MIDDLEWARE = [
