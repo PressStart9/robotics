@@ -1,0 +1,5 @@
+django
+django_heroku
+schedule
+datetime
+asyncio
