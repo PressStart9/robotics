@@ -3,8 +3,8 @@ from mainApps.models import Posts, Attachments
 from django.db.models import Q
 from  el_pagination.decorators  import  page_template
 
-@page_template('folders/news_list_page.html')
-def view_invents(request, template='folders/news.html', page_template='folders/news_list_page.html', extra_context=None):
+@page_template('folders/invents_list_page.html')
+def view_invents(request, template='folders/invents.html', page_template='folders/invents_list_page.html', extra_context=None):
     print(Posts.objects.filter(text__icontains='пригла').all())
     context = {
         'wall_content': Posts.objects.filter(text__icontains='пригла'),
