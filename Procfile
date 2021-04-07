@@ -1,1 +1,1 @@
-web: gunicornc robotics.wsgi --log-file -
+web: gunicorn robotics.wsgi --log-file -
