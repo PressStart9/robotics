@@ -156,11 +156,6 @@ class Command(BaseCommand):
                 offset += 100
             except:
                 break
-        schedule.every(10).hours.do(check_news)
-
-        while 1:
-            schedule.run_pending()
-            time.sleep(1)
 
     def handle(self, *args, **options):
         self.schedule()
