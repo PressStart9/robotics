@@ -144,18 +144,18 @@ def check_news(offset):
             time.sleep(1)
             print('next')
         #except:
-            pass
+            #pass
 
 
 class Command(BaseCommand):
     def schedule(self):
         offset = 0
         while True:
-            try:
+            #try:
                 check_news(offset)
                 offset += 100
-            except:
-                break
+            #except:
+                #break
 
     def handle(self, *args, **options):
         self.schedule()
