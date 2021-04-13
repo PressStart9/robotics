@@ -89,10 +89,10 @@ WSGI_APPLICATION = 'robotics.wsgi.application'
 DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2', #Used 'django.db.backends.postgresql' as well
-            'NAME': 'd8it090ko7iu69',
-            'USER': 'mjebqmcwbksbqj',
-            'PASSWORD': 'd7538ae6004706b238711d25a53837a6eadd936d1cdfaf6d5378c16f5a508821',
-            'HOST': 'ec2-34-252-251-16.eu-west-1.compute.amazonaws.com',
+            'NAME': 'd51v9is1fqvkih',
+            'USER': 'vsqtrfanssoimw',
+            'PASSWORD': '64795ce264a4184eab5878b6e7760479ab12f8a6526f9e133f1a77bdb52721d7',
+            'HOST': 'ec2-99-80-200-225.eu-west-1.compute.amazonaws.com',
             'PORT': '5432',
     }
 }
