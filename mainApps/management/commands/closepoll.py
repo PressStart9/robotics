@@ -19,7 +19,7 @@ def check_news(offset):
     wall_content = vk_api.wall.get(domain='clubrotor1', count=100, offset=offset)['items']
     for cont in wall_content:
         #if cont['date'] > int(str(datetime.datetime.timestamp(Posts.objects.all().latest('posting_date').posting_date)).split('.')[0]):
-        try:
+        #try:
             author = vk_api.groups.getById(group_ids=int(str(cont['owner_id']).replace("-", "")))[0]
             author_image = author['photo_50']
             author_name = author['name']
@@ -143,7 +143,7 @@ def check_news(offset):
                     pass
             time.sleep(1)
             print('next')
-        except:
+        #except:
             pass
 
 
