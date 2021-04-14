@@ -186,8 +186,8 @@
                 }
 
                 gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
-                gallery.listen('close', function() { gallery.destroy() });
                 gallery.init();
+                gallery.listen('destroy', function() { var galel = document.querySelectorAll( gallerySelector ); for(var i = 0, l = galleryElements.length; i < l; i++) { while (galleryElements[i].firstChild) { galleryElements[i].firstChild.remove() } } });
                 
             };
 
