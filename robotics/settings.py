@@ -136,5 +136,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+EL_PAGINATION_LOADING = """<div style="border: 16px solid #f3f3f3; border-top: 16px solid #3498db; border-radius: 50%; width: 120px; height: 120px; animation: spin 2s linear infinite;">"""
+
 django_heroku.settings(locals())
 
