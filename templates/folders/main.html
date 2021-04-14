@@ -2,7 +2,7 @@
 {% load poll_extras %}
 {% block content %}
 <body>
-    <div style="margin-top: 55px; width: 60%; background-color: #eee;" class="container">
+    <div id="main_cont" style="margin-top: 55px; background-color: #eee;" class="container">
         {% for val in wall_content %}
             {% if not val.main_history %}
                 <div class="post_header" style="overflow: hidden; margin-top: 20px">
