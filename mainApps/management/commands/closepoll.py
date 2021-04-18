@@ -138,11 +138,11 @@ class Command(BaseCommand):
     def schedule(self):
         offset = 0
         while True:
-            try:
+            #try:
                 check_news(offset)
                 offset += 100
-            except:
-                break
+            #except:
+                #break
 
     def handle(self, *args, **options):
         self.schedule()
