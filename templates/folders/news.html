@@ -187,7 +187,7 @@
 
                 gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
                 gallery.init();
-                gallery.listen('destroy', function() { var galel = document.querySelectorAll( gallerySelector ); for(var i = 0, l = galleryElements.length; i < l; i++) { while (galleryElements[i].firstChild) { galleryElements[i].firstChild.remove() } } });
+                gallery.listen('destroy', function() { var galel = document.getElementsByClassName( 'pswp_item' ); for(var i = 0, l =galel.length; i < l; i++) { while (galel[i].firstChild) { galel[i].firstChild.remove() } } });
                 
             };
 
