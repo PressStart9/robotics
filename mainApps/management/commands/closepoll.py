@@ -70,7 +70,7 @@ def check_news(offset):
                     url = att['link']['title'] + '@' + att['link']['url']
                     attach = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, type=type, url=url, height=height, width=width,
                                                                        preview=preview)
-            print('3')
+            print('3', cont)
             if cont.get('copy_history') != None:
                 cont = cont['copy_history'][0]
                 cauthor = vk_api.groups.getById(group_ids=int(str(cont['owner_id']).replace("-", "")))[0]
