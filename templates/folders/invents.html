@@ -200,6 +200,8 @@
 
                 gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
                 gallery.init();
+                gallery.listen('destroy', function() { console.log('destroy'); var galel = document.getElementsByClassName( 'pswp__item' ); for(var i = 0, l = galel.length; i < l; i++) { while (galel[i].firstChild) { galel[i].firstChild.remove() } } });
+                
             };
 
             var galleryElements = document.querySelectorAll( gallerySelector );
