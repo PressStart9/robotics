@@ -128,9 +128,9 @@ def check_news(offset):
                             curl = catt['link']['title'] + '@' + catt['link']['url']
                             cattach = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, type=ctype, url=curl, height=cheight, width=cwidth,
                                                                                 preview=cpreview)
-                        time.sleep(0.1)
+                        time.sleep(0.5)
                         print('5')
-        time.sleep(0.1)
+        time.sleep(0.5)
         print('next')
 
 
