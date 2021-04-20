@@ -142,7 +142,7 @@ class Command(BaseCommand):
                 check_news(offset)
                 offset += 100
             except:
-                #break
+                break
 
     def handle(self, *args, **options):
         self.schedule()
