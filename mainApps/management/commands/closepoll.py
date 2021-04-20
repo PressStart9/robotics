@@ -70,66 +70,66 @@ def check_news(offset):
                     url = att['link']['title'] + '@' + att['link']['url']
                     attach = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, type=type, url=url, height=height, width=width,
                                                                        preview=preview)
-            print('3', cont)
-            if cont.get('copy_history') != None:
-                cont = cont['copy_history'][0]
-                cauthor = vk_api.groups.getById(group_ids=int(str(cont['owner_id']).replace("-", "")))[0]
-                cauthor_image = cauthor['photo_50']
-                cauthor_name = cauthor['name']
-                cposting_date = make_aware(datetime.datetime.fromtimestamp(cont['date']))
-                ctext = cont['text']
-                cpost_id = cont['id']
-                post_copy, created = Posts.objects.get_or_create(main_history=post_main, author_image=cauthor_image,
+        print('3', cont)
+        if cont.get('copy_history') != None:
+            cont = cont['copy_history'][0]
+            cauthor = vk_api.groups.getById(group_ids=int(str(cont['owner_id']).replace("-", "")))[0]
+            cauthor_image = cauthor['photo_50']
+            cauthor_name = cauthor['name']
+            cposting_date = make_aware(datetime.datetime.fromtimestamp(cont['date']))
+            ctext = cont['text']
+            cpost_id = cont['id']
+            post_copy, created = Posts.objects.get_or_create(main_history=post_main, author_image=cauthor_image,
                                                                      author_name=cauthor_name, posting_date=cposting_date,
                                                                      text=ctext, post_id=cpost_id)
-                print('4', created)
-                if cont.get('attachments') != None:
-                    for catt in cont['attachments']:
-                        ctype = catt['type']
-                        if ctype == 'photo':
-                            cid = catt['photo']['id']
-                            cpreview = catt['photo']['sizes'][0]['url']
-                            curl = catt['photo']['sizes'][-1]['url']
-                            cwidth = catt['photo']['sizes'][-1]['width']
-                            cheight = catt['photo']['sizes'][-1]['height']
-                            cattach = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, type=ctype,
+            print('4', created)
+            if cont.get('attachments') != None:
+                for catt in cont['attachments']:
+                    ctype = catt['type']
+                    if ctype == 'photo':
+                        cid = catt['photo']['id']
+                        cpreview = catt['photo']['sizes'][0]['url']
+                        curl = catt['photo']['sizes'][-1]['url']
+                        cwidth = catt['photo']['sizes'][-1]['width']
+                        cheight = catt['photo']['sizes'][-1]['height']
+                        cattach = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, type=ctype,
                                                                                 preview=cpreview,
                                                                                 url=curl,
                                                                                 width=cwidth, height=cheight)
-                        elif ctype == 'video':
-                            cid = catt['video']['id']
-                            cpreview = catt['video']['photo_130']
-                            cvid = vk_api.video.get(owner_id=catt['video']['owner_id'],
-                                                            videos=str(catt['video']['owner_id']) + '_' + str(
-                                                                catt['video']['id']))
-                            curl = cvid['items'][0]['player']
-                            cwidth = cvid['items'][0].get('width', None)
-                            cheight = cvid['items'][0].get('height', None)
-                            cattach = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, type=ctype,
+                    elif ctype == 'video':
+                        cid = catt['video']['id']
+                        cpreview = catt['video']['photo_130']
+                        cvid = vk_api.video.get(owner_id=catt['video']['owner_id'],
+                                                        videos=str(catt['video']['owner_id']) + '_' + str(
+                                                            catt['video']['id']))
+                        curl = cvid['items'][0]['player']
+                        cwidth = cvid['items'][0].get('width', None)
+                        cheight = cvid['items'][0].get('height', None)
+                        cattach = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, type=ctype,
                                                                                 preview=cpreview,
                                                                                 url=curl,
                                                                                 width=cwidth, height=cheight)
-                        elif ctype == 'doc':
-                             cid = catt['doc']['id']
-                             curl = catt['doc']['url']
-                             cpreview = catt['doc']['title']
-                             cattach = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, type=ctype, url=curl,
+                    elif ctype == 'doc':
+                         cid = catt['doc']['id']
+                         curl = catt['doc']['url']
+                         cpreview = catt['doc']['title']
+                         cattach = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, type=ctype, url=curl,
                                                                                 preview=cpreview)
-                        elif ctype == 'link':
-                            cid = 0
-                            try:
-                                cpreview = catt['link']['photo']['sizes'][0]['url']
-                                cheight = catt['link']['photo']['sizes'][0]['height']
-                                cwidth = catt['link']['photo']['sizes'][0]['width']
-                            except:
-                                cpreview = 0
-                                cheight = 0
-                                cwidth = 0
-                            curl = catt['link']['title'] + '@' + catt['link']['url']
-                            cattach = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, type=ctype, url=curl, height=cheight, width=cwidth,
-                                                                                preview=cpreview)
-                        time.sleep(0.5)
-                        print('5')
+                    elif ctype == 'link':
+                        cid = 0
+                        try:
+                            cpreview = catt['link']['photo']['sizes'][0]['url']
+                            cheight = catt['link']['photo']['sizes'][0]['height']
+                            cwidth = catt['link']['photo']['sizes'][0]['width']
+                        except:
+                            cpreview = 0
+                            cheight = 0
+                            cwidth = 0
+                        curl = catt['link']['title'] + '@' + catt['link']['url']
+                        cattach = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, type=ctype, url=curl, height=cheight, width=cwidth,
+                                                                            preview=cpreview)
+                    time.sleep(0.5)
+                    print('5')
         time.sleep(0.5)
         print('next')
 
