@@ -28,7 +28,8 @@
                                             <img src="{{ attach.preview }}" itemprop="thumbnail" alt="Image description" />
                                         </a>
                                         <figcaption itemprop="caption description"></figcaption>
-                                    </figure>
+                                    {% if val.copy_history.all.0.text != '' %}
+                                </figure>
                                 {% endif %}
                                 {% if attach.type == 'video' %}
                                     <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -51,7 +52,8 @@
                             {% if attach.type == 'link' %}
                                 <div style="padding-left: 3%; border-left:2px solid #ccc; overflow: hidden; margin-top: 5px">
                                     <a href="{{ attach.url|Cutthecrap:1 }}">
-                                        {% if attach.preview != 0 %}
+                                    {% if val.copy_history.all.0.text != '' %}
+                                    {% if attach.preview != 0 %}
                                             <img src="{{ attach.preview }}" style="max-height: 100%; max-width: 100%; border-radius: 20px">
                                         {% endif %}
                                         <h4 style="display: block; margin-left: 10%; position: relative; width: 70%; color: #003366">{{ attach.url|Cutthecrap:0 }}</h4>
@@ -62,7 +64,8 @@
 
                         <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="pswp__bg"></div>
-
+      {% if val.copy_history.all.0.text != '' %}
+                          
                                     <div class="pswp__scroll-wrap">
                                         <div class="pswp__container">
                                             <div class="pswp__item"></div>
@@ -89,7 +92,8 @@
                                             <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
                                                 <div class="pswp__share-tooltip"></div>
                                             </div>
-                                            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                               {% if val.copy_history.all.0.text != '' %}
+                                             <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
                                             </button>
                                             <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
                                             </button>
@@ -101,8 +105,8 @@
                         </div>
                     </div>
 
-        {% if val.copy_history.all.0 %}
-            {{ val.copy_history.all.0 }}
+        {% if val.copy_history.all.0 %}      {% if val.copy_history.all.0.text != '' %}
+                          
             <div style="padding-left: 3%; border-left:2px solid #ccc; overflow: hidden; margin-top: 5px" class="copy_container">
                     <div class="copy_post_header">
                         <a class="copy_post_image" href="https://vk.com/clubrotor1?z=photo-44637636_456239581%2Falbum-44637636_0%2Frev">
