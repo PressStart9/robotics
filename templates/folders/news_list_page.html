@@ -102,7 +102,7 @@
         {% if val.copy_history.all.0 %}
             <div style="padding-left: 3%; border-left:2px solid #ccc; overflow: hidden; margin-top: 5px" class="copy_container">
                     <div class="copy_post_header">
-                        <a class="copynews/_post_image" href="https://vk.com/clubrotor1?z=photo-44637636_456239581%2Falbum-44637636_0%2Frev">
+                        <a class="copy_post_image" href="https://vk.com/clubrotor1?z=photo-44637636_456239581%2Falbum-44637636_0%2Frev">
                             <img src="{{ val.copy_history.all.0.author_image }}" align="left" width="50" height="50" class="post_img">
                         </a>
 
@@ -139,7 +139,7 @@
                                     {% endfor %}
                                 </div>
 
-                                {% for attach in val.copy_history.all.0.atachs.all %news/}
+                                {% for attach in val.copy_history.all.0.atachs.all %}
                                     {% if attach.type == 'doc' %}
                                         <a class="doc_image" href="{{ attach.url }}">
                                             <img src="https://w7.pngwing.com/pngs/521/255/png-transparent-computer-icons-data-file-document-file-format-others.png" style="margin: 0 0 0 -20px; max-height: 60px; max-width: 60px" align="left">
