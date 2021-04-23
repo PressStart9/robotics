@@ -51,7 +51,6 @@
                             {% if attach.type == 'link' %}
                                 <div style="padding-left: 3%; border-left:2px solid #ccc; overflow: hidden; margin-top: 5px">
                                     <a href="{{ attach.url|Cutthecrap:1 }}">
-                                    {% if val.copy_history.all.0.text != '' %}
                                         {% if attach.preview != 0 %}
                                             <img src="{{ attach.preview }}" style="max-height: 100%; max-width: 100%; border-radius: 20px">
                                         {% endif %}
