@@ -99,26 +99,26 @@
                                         </div>
                                     </div>
                         </div>
-
                     </div>
 
         {% if val.copy_history.all.0 %}
+            {{ val.copy_history.all.0 }}
             <div style="padding-left: 3%; border-left:2px solid #ccc; overflow: hidden; margin-top: 5px" class="copy_container">
                     <div class="copy_post_header">
-                                <a class="copy_post_image" href="https://vk.com/clubrotor1?z=photo-44637636_456239581%2Falbum-44637636_0%2Frev">
-                                    <img src="{{ val.copy_history.all.0.author_image }}" align="left" width="50" height="50" class="post_img">
-                                </a>
+                        <a class="copy_post_image" href="https://vk.com/clubrotor1?z=photo-44637636_456239581%2Falbum-44637636_0%2Frev">
+                            <img src="{{ val.copy_history.all.0.author_image }}" align="left" width="50" height="50" class="post_img">
+                        </a>
 
-                                <div class="copy_post_header_info" style="margin-left: 60px">
-                                    <h5 class="post_author"><a class="author" href="https://vk.com/clubrotor1">{{ val.copy_history.all.0.author_name }}</a></h5>
-                                    <div class="post_date" style="margin: -4px 10px 0px -3px;">{{ val.copy_history.all.0.posting_date|date:"d/m/Y" }}</div>
-                                </div>
-                            </div>
+                        <div class="copy_post_header_info" style="margin-left: 60px">
+                             <h5 class="post_author"><a class="author" href="https://vk.com/clubrotor1">{{ val.copy_history.all.0.author_name }}</a></h5>
+                             <div class="post_date" style="margin: -4px 10px 0px -3px;">{{ val.copy_history.all.0.posting_date|date:"d/m/Y" }}</div>
+                        </div>
+                      </div>
 
-                    <div class="copy_post_content">
-                                {% if val.copy_history.all.0.text != '' %}
-                                    <div class="wall_post_text"><h5>{{ val.copy_history.all.0.text|linebreaksbr }}</h5></div>
-                                {% endif %}
+            <div class="copy_post_content">
+                {% if val.copy_history.all.0.text != '' %}
+                    <div class="wall_post_text"><h5>{{ val.copy_history.all.0.text|linebreaksbr }}</h5></div>
+                {% endif %}
 
                                 <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
                                     {% for attach in val.copy_history.all.0.atachs.all %}
