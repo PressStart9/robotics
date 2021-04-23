@@ -37,7 +37,7 @@ def check_news(offset):
                     url = att['photo']['sizes'][-1]['url']
                     width = att['photo']['sizes'][-1]['width']
                     height = att['photo']['sizes'][-1]['height']
-                    attach = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, type=type, preview=preview,
+                    attach, created = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, type=type, preview=preview,
                                                                        url=url,
                                                                        width=width, height=height)
                 elif type == 'video':
@@ -48,14 +48,14 @@ def check_news(offset):
                     url = vid['items'][0]['player']
                     width = vid['items'][0].get('width', None)
                     height = vid['items'][0].get('height', None)
-                    attach = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, type=type, preview=preview,
+                    attach, created = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, type=type, preview=preview,
                                                                        url=url,
                                                                        width=width, height=height)
                 elif type == 'doc':
                     id = att['doc']['id']
                     url = att['doc']['url']
                     preview = att['doc']['title']
-                    attach = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, type=type, url=url,
+                    attach, created = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, type=type, url=url,
                                                                        preview=preview)
                 elif type == 'link':
                     id = 0
@@ -68,9 +68,9 @@ def check_news(offset):
                         height = 0
                         width = 0
                     url = att['link']['title'] + '@' + att['link']['url']
-                    attach = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, type=type, url=url, height=height, width=width,
+                    attach, created = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, type=type, url=url, height=height, width=width,
                                                                        preview=preview)
-        print('3', cont)
+        print('3', created)
         if cont.get('copy_history') != None:
             cont = cont['copy_history'][0]
             cauthor = vk_api.groups.getById(group_ids=int(str(cont['owner_id']).replace("-", "")))[0]
@@ -92,7 +92,7 @@ def check_news(offset):
                         curl = catt['photo']['sizes'][-1]['url']
                         cwidth = catt['photo']['sizes'][-1]['width']
                         cheight = catt['photo']['sizes'][-1]['height']
-                        cattach = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, type=ctype,
+                        cattach, created = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, type=ctype,
                                                                                 preview=cpreview,
                                                                                 url=curl,
                                                                                 width=cwidth, height=cheight)
@@ -105,7 +105,7 @@ def check_news(offset):
                         curl = cvid['items'][0]['player']
                         cwidth = cvid['items'][0].get('width', None)
                         cheight = cvid['items'][0].get('height', None)
-                        cattach = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, type=ctype,
+                        cattach, created = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, type=ctype,
                                                                                 preview=cpreview,
                                                                                 url=curl,
                                                                                 width=cwidth, height=cheight)
@@ -113,7 +113,7 @@ def check_news(offset):
                          cid = catt['doc']['id']
                          curl = catt['doc']['url']
                          cpreview = catt['doc']['title']
-                         cattach = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, type=ctype, url=curl,
+                         cattach, created = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, type=ctype, url=curl,
                                                                                 preview=cpreview)
                     elif ctype == 'link':
                         cid = 0
@@ -126,10 +126,10 @@ def check_news(offset):
                             cheight = 0
                             cwidth = 0
                         curl = catt['link']['title'] + '@' + catt['link']['url']
-                        cattach = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, type=ctype, url=curl, height=cheight, width=cwidth,
+                        cattach, created = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, type=ctype, url=curl, height=cheight, width=cwidth,
                                                                             preview=cpreview)
                     time.sleep(0.5)
-                    print('5')
+                    print('5', created)
         time.sleep(0.5)
         print('next')
 
