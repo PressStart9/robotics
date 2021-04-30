@@ -64,6 +64,7 @@ def check_news(offset):
                         width = 0
                     url = att['link']['title'] + '@' + att['link']['url']
                     attach, created = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, defaults={"type":type, "preview":preview, "url":url, "width":width, "height":height})
+                time.sleep(0.5)
         print('3', created)
         if cont.get('copy_history') != None:
             cont = cont['copy_history'][0]
