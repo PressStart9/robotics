@@ -7,7 +7,7 @@ import schedule
 from django.utils.timezone import make_aware
 from mainApps.models import Posts, Attachments
 
-
+UnboundLocalError: local variable 'id' referenced before assignment
 
 def check_news(offset):
     #зачем предотвращать появление ошибок, если можно просто их игнорировать?
@@ -72,7 +72,7 @@ def check_news(offset):
             cposting_date = make_aware(datetime.datetime.fromtimestamp(cont['date']))
             ctext = cont['text']
             cpost_id = cont['id']
-            post_copy, created = Posts.objects.get_or_create(posting_date=posting_date, post_id=post_id, defaults={"author_image":author_image, "author_name":author_name, "text":text, "main_history":post_main})
+            post_copy, created = Posts.objects.get_or_create(posting_date=cposting_date, post_id=cpost_id, defaults={"author_image":cauthor_image, "author_name":cauthor_name, "text":ctext, "main_history":post_main})
             print('4', created)
             if cont.get('attachments') != None:
                 for catt in cont['attachments']:
@@ -83,7 +83,7 @@ def check_news(offset):
                         curl = catt['photo']['sizes'][-1]['url']
                         cwidth = catt['photo']['sizes'][-1]['width']
                         cheight = catt['photo']['sizes'][-1]['height']
-                        cattach, created = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, defaults={"type":type, "preview":preview, "url":url, "width":width, "height":height})
+                        cattach, created = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, defaults={"type":ctype, "preview":cpreview, "url":curl, "width":cwidth, "height":cheight})
                     elif ctype == 'video':
                         cid = catt['video']['id']
                         cpreview = catt['video']['photo_130']
@@ -93,12 +93,12 @@ def check_news(offset):
                         curl = cvid['items'][0]['player']
                         cwidth = cvid['items'][0].get('width', None)
                         cheight = cvid['items'][0].get('height', None)
-                        cattach, created = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, defaults={"type":type, "preview":preview, "url":url, "width":width, "height":height})
+                        cattach, created = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, defaults={"type":ctype, "preview":cpreview, "url":curl, "width":cwidth, "height":cheight})
                     elif ctype == 'doc':
                          cid = catt['doc']['id']
                          curl = catt['doc']['url']
                          cpreview = catt['doc']['title']
-                         cattach, created = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, defaults={"type":type, "preview":preview, "url":url})
+                         cattach, created = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, defaults={"type":ctype, "preview":cpreview, "url":curl})
                     elif ctype == 'link':
                         cid = 0
                         try:
@@ -110,7 +110,7 @@ def check_news(offset):
                             cheight = 0
                             cwidth = 0
                         curl = catt['link']['title'] + '@' + catt['link']['url']
-                        cattach, created = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, defaults={"type":type, "preview":preview, "url":url, "width":width, "height":height})
+                        cattach, created = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, defaults={"type":ctype, "preview":cpreview, "url":curl, "width":cwidth, "height":cheight})
                     time.sleep(0.5)
                     print('5', created)
         time.sleep(0.5)
