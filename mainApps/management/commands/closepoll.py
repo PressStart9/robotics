@@ -3,6 +3,7 @@ import warnings
 import time
 import datetime
 import vk
+import re
 import schedule
 from django.utils.timezone import make_aware
 from mainApps.models import Posts, Attachments
@@ -22,6 +23,7 @@ def check_news(offset):
         author_name = author['name']
         posting_date = make_aware(datetime.datetime.fromtimestamp(cont['date']))
         text = cont['text']
+        text = re.sub(r'[[]([club].*)[|](.*)[]]', r'<a href="https://vk.com/\1">\2<a>', text)
         post_id = cont['id']
         
         post_main, created = Posts.objects.get_or_create(posting_date=posting_date, post_id=post_id, defaults={"author_image":author_image, "author_name":author_name, "text":text})
@@ -70,6 +72,7 @@ def check_news(offset):
             cauthor_name = cauthor['name']
             cposting_date = make_aware(datetime.datetime.fromtimestamp(cont['date']))
             ctext = cont['text']
+            ctext = re.sub(r'[[]([club].*)[|](.*)[]]', r'<a href="https://vk.com/\1">\2<a>', ctext)
             cpost_id = cont['id']
             post_copy, created = Posts.objects.get_or_create(posting_date=cposting_date, post_id=cpost_id, defaults={"author_image":cauthor_image, "author_name":cauthor_name, "text":ctext, "main_history":post_main})
             print('4', created)
