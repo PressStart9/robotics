@@ -24,9 +24,8 @@ def check_news(offset):
         posting_date = make_aware(datetime.datetime.fromtimestamp(cont['date']))
         text = cont['text']
         post_id = cont['id']
-        post_main, created = Posts.objects.get_or_create(author_image=author_image, author_name=author_name,
-                                                             posting_date=posting_date,
-                                                             text=text, post_id=post_id)
+        
+        post_main, created = Posts.objects.get_or_create(posting_date=posting_date, post_id=post_id, defaults={"author_image":author_image, "author_name":author_name, "text":text})
         print('2', created)
         if cont.get('attachments') != None:
             for att in cont['attachments']:
@@ -37,9 +36,7 @@ def check_news(offset):
                     url = att['photo']['sizes'][-1]['url']
                     width = att['photo']['sizes'][-1]['width']
                     height = att['photo']['sizes'][-1]['height']
-                    attach, created = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, type=type, preview=preview,
-                                                                       url=url,
-                                                                       width=width, height=height)
+                    attach, created = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, defaults={"type":type, "preview":preview, "url":url, "width":width, "height":height})
                 elif type == 'video':
                     id = att['video']['id']
                     preview = att['video']['photo_130']
@@ -48,15 +45,12 @@ def check_news(offset):
                     url = vid['items'][0]['player']
                     width = vid['items'][0].get('width', None)
                     height = vid['items'][0].get('height', None)
-                    attach, created = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, type=type, preview=preview,
-                                                                       url=url,
-                                                                       width=width, height=height)
+                    attach, created = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, defaults={"type":type, "preview":preview, "url":url, "width":width, "height":height})
                 elif type == 'doc':
                     id = att['doc']['id']
                     url = att['doc']['url']
                     preview = att['doc']['title']
-                    attach, created = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, type=type, url=url,
-                                                                       preview=preview)
+                    attach, created = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, defaults={"type":type, "preview":preview, "url":url})
                 elif type == 'link':
                     id = 0
                     try:
@@ -68,8 +62,7 @@ def check_news(offset):
                         height = 0
                         width = 0
                     url = att['link']['title'] + '@' + att['link']['url']
-                    attach, created = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, type=type, url=url, height=height, width=width,
-                                                                       preview=preview)
+                    attach, created = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, defaults={"type":type, "preview":preview, "url":url, "width":width, "height":height})
         print('3', created)
         if cont.get('copy_history') != None:
             cont = cont['copy_history'][0]
@@ -79,9 +72,7 @@ def check_news(offset):
             cposting_date = make_aware(datetime.datetime.fromtimestamp(cont['date']))
             ctext = cont['text']
             cpost_id = cont['id']
-            post_copy, created = Posts.objects.get_or_create(main_history=post_main, author_image=cauthor_image,
-                                                                     author_name=cauthor_name, posting_date=cposting_date,
-                                                                     text=ctext, post_id=cpost_id)
+            post_copy, created = Posts.objects.get_or_create(posting_date=posting_date, post_id=post_id, defaults={"author_image":author_image, "author_name":author_name, "text":text, "main_history":post_main})
             print('4', created)
             if cont.get('attachments') != None:
                 for catt in cont['attachments']:
@@ -92,10 +83,7 @@ def check_news(offset):
                         curl = catt['photo']['sizes'][-1]['url']
                         cwidth = catt['photo']['sizes'][-1]['width']
                         cheight = catt['photo']['sizes'][-1]['height']
-                        cattach, created = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, type=ctype,
-                                                                                preview=cpreview,
-                                                                                url=curl,
-                                                                                width=cwidth, height=cheight)
+                        cattach, created = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, defaults={"type":type, "preview":preview, "url":url, "width":width, "height":height})
                     elif ctype == 'video':
                         cid = catt['video']['id']
                         cpreview = catt['video']['photo_130']
@@ -105,16 +93,12 @@ def check_news(offset):
                         curl = cvid['items'][0]['player']
                         cwidth = cvid['items'][0].get('width', None)
                         cheight = cvid['items'][0].get('height', None)
-                        cattach, created = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, type=ctype,
-                                                                                preview=cpreview,
-                                                                                url=curl,
-                                                                                width=cwidth, height=cheight)
+                        cattach, created = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, defaults={"type":type, "preview":preview, "url":url, "width":width, "height":height})
                     elif ctype == 'doc':
                          cid = catt['doc']['id']
                          curl = catt['doc']['url']
                          cpreview = catt['doc']['title']
-                         cattach, created = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, type=ctype, url=curl,
-                                                                                preview=cpreview)
+                         cattach, created = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, defaults={"type":type, "preview":preview, "url":url})
                     elif ctype == 'link':
                         cid = 0
                         try:
@@ -126,8 +110,7 @@ def check_news(offset):
                             cheight = 0
                             cwidth = 0
                         curl = catt['link']['title'] + '@' + catt['link']['url']
-                        cattach, created = Attachments.objects.get_or_create(atach_id=cid, connect_post=post_copy, type=ctype, url=curl, height=cheight, width=cwidth,
-                                                                            preview=cpreview)
+                        cattach, created = Attachments.objects.get_or_create(atach_id=id, connect_post=post_main, defaults={"type":type, "preview":preview, "url":url, "width":width, "height":height})
                     time.sleep(0.5)
                     print('5', created)
         time.sleep(0.5)
