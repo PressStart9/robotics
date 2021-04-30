@@ -7,7 +7,6 @@ import schedule
 from django.utils.timezone import make_aware
 from mainApps.models import Posts, Attachments
 
-UnboundLocalError: local variable 'id' referenced before assignment
 
 def check_news(offset):
     #зачем предотвращать появление ошибок, если можно просто их игнорировать?
