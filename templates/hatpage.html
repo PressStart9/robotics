@@ -120,7 +120,7 @@
         function check(){
             var list = document.getElementsByTagName('h5')
             for (var i = 0; i < list.length; i++) {
-                list[i] = list[i].replace("&lt;", "<").replace("&gt;", ">")
+                list[i] = list[i]["outerText"].replace("&lt;", "<").replace("&gt;", ">")
             }
         };
         setInterval(check(), 3);
