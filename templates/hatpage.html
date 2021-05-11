@@ -118,9 +118,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
         function check(){
-            var list = document.getElementsByTagName('h5')
+            var list = document.getElementsByTagName('h5');
             for (var i = 0; i < list.length; i++) {
-                list[i] = list[i]["innerHTML"].replace("&lt;", "<").replace("&gt;", ">")
+                list[i].innerHTML = list[i]["innerHTML"].replace("&lt;", "<").replace("&gt;", ">");
             }
         };
         setInterval(check(), 3);
