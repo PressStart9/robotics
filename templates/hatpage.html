@@ -118,11 +118,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
         function check(){
-            $('#wrapper').find("h5").next().each(function(){
-                var $this = $(this);
-                var t = $this.text();
-                $this.html(t.replace('&lt;','<').replace('&gt;', '>'));
-            });
+            var list = document.getElementsByTagName('h5')
+            for (var i = 0; i < list.length; i++) {
+                list[i] = list[i].replace("&lt;", "<").replace("&gt;", ">")
+            }
         };
         setInterval(check(), 3);
     </script>
