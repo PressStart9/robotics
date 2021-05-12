@@ -49,7 +49,7 @@
                                 </a>
                             {% endif %}
                             {% if attach.type == 'link' %}
-                                <div style="padding-left: 3%; border-left:2px solid #ccc; overflow: hidden; margin-top: 5px">
+                                <div class="linkdiv" style="padding-left: 3%; border-left:2px solid #ccc; overflow: hidden; margin-top: 5px; display: block;">
                                     <a href="{{ attach.url|Cutthecrap:1 }}">
                                         {% if attach.preview != '0' %}
                                             <img src="{{ attach.preview }}" style="max-height: 100%; max-width: 100%; border-radius: 20px">
@@ -147,7 +147,7 @@
                                         </a>
                                     {% endif %}
                                     {% if attach.type == 'link' %}
-                                        <div style="padding-left: 3%; border-left:2px solid #ccc; overflow: hidden; margin-top: 5px">
+                                        <div class="linkdiv" style="padding-left: 3%; border-left:2px solid #ccc; overflow: hidden; margin-top: 5px; display: block;">
                                             <a href="{{ attach.url|Cutthecrap:1 }}">
                                                 {% if attach.preview != '0' %}
                                                     <img src="{{ attach.preview }}" style="max-height: 100%; max-width: 100%; border-radius: 20px">
