@@ -17,9 +17,7 @@
 
         <div class="post_content" style="overflow: hidden;">
                         {% if val.text != '' %}
-                            {% autoescape on %}
-                                <div class="wall_post_text"><h5>{{ val.text|linebreaksbr|safe }}</h5></div>
-                            {% endautoescape %}
+                            <div class="wall_post_text"><h5>{{ val.text|safe }}</h5></div>
                         {% endif %}
 
                         <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
@@ -116,9 +114,7 @@
 
             <div class="copy_post_content">
                 {% if val.copy_history.all.0.text != '' %}
-                    {% autoescape on %}
-                        <div class="wall_post_text"><h5>{{ val.copy_history.all.0.text|linebreaksbr|safe }}</h5></div>
-                    {% endautoescape %}
+                    <div class="wall_post_text"><h5>{{ val.copy_history.all.0.text|safe }}</h5></div>
                 {% endif %}
 
                                 <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
