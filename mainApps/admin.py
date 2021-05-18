@@ -8,4 +8,4 @@ class AdminPosts(admin.ModelAdmin):
 
 @admin.register(Attachments)
 class AdminAttachmets(admin.ModelAdmin):
-    list_display = ['type', 'url', 'connect_post', 'preview']
+    list_display = ['type', 'url', 'preview', 'connect_post', 'height', 'width']
