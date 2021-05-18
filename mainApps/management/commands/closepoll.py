@@ -24,6 +24,7 @@ def check_news(offset):
         posting_date = make_aware(datetime.datetime.fromtimestamp(cont['date']))
         text = cont['text']
         text = re.sub(r'[[]([club].{5,15})[|](.{1,125})[]]', r'<a href="https://vk.com/\1">\2</a>', text)
+        text = re.sub(r'((http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?)', r'<a href="\1">\1</a>', text)
         post_id = cont['id']
         
         post_main, created = Posts.objects.get_or_create(posting_date=posting_date, post_id=post_id, defaults={"author_image":author_image, "author_name":author_name, "text":text})
