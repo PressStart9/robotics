@@ -59,6 +59,7 @@ def check_news(offset):
                         height = catt['link']['photo']['sizes'][0]['height']
                         width = catt['link']['photo']['sizes'][0]['width']
                     except:
+                        print('0')
                         preview = 0
                         height = 0
                         width = 0
@@ -109,6 +110,7 @@ def check_news(offset):
                             cheight = catt['link']['photo']['sizes'][0]['height']
                             cwidth = catt['link']['photo']['sizes'][0]['width']
                         except:
+                            print('0')
                             cpreview = 0
                             cheight = 0
                             cwidth = 0
