@@ -73,7 +73,7 @@ def check_news(offset):
             cont = cont['copy_history'][0]
             cauthor = vk_api.groups.getById(group_ids=int(str(cont['owner_id']).replace("-", "")))[0]
             cauthor_image = cauthor['photo_50']
-            cauthor_name = cauthor['name']
+            cauthor_name = cauthor['name'] + "@" + f"https://vk.com/{cauthor['screen_name']}?w=wall-{cauthor['id']}_{cont['id']}%2Fall"
             cposting_date = make_aware(datetime.datetime.fromtimestamp(cont['date']))
             ctext = cont['text']
             ctext = re.sub(r'[[]([club].{5,15})[|](.{1,125})[]]', r'<a href="https://vk.com/\1">\2</a>', ctext)
