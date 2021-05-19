@@ -20,11 +20,12 @@ def check_news(offset):
     for cont in wall_content:
         author = vk_api.groups.getById(group_ids=int(str(cont['owner_id']).replace("-", "")))[0]
         author_image = author['photo_50']
-        author_name = author['name']
+        author_name = author['name'] + "@" + f"https://vk.com/{author['screen_name']}?w=wall-{author['id']}_{cont['id']}%2Fall"
         posting_date = make_aware(datetime.datetime.fromtimestamp(cont['date']))
         text = cont['text']
         text = re.sub(r'[[]([club].{5,15})[|](.{1,125})[]]', r'<a href="https://vk.com/\1">\2</a>', text)
         text = re.sub(r'((http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?)', r'<a href="\1">\1</a>', text)
+        text = re.sub(r'#([\w.,@?^=%&:/~+#-]*)', r'<a href="https://vk.com/feed?section=search&q=%23\1">#\1</a>', text)
         post_id = cont['id']
         
         post_main, created = Posts.objects.get_or_create(posting_date=posting_date, post_id=post_id, defaults={"author_image":author_image, "author_name":author_name, "text":text})
