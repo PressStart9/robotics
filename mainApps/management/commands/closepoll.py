@@ -23,8 +23,8 @@ def check_news(offset):
         author_name = author['name'] + "@" + f"https://vk.com/{author['screen_name']}?w=wall-{author['id']}_{cont['id']}%2Fall"
         posting_date = make_aware(datetime.datetime.fromtimestamp(cont['date']))
         text = cont['text']
-        text = re.sub(r'[[]([club].{5,15})[|](.{1,125})[]]', r'<a href="https://vk.com/\1">\2</a>', text)
         text = re.sub(r'((http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?)', r'<a href="\1">\1</a>', text)
+        text = re.sub(r'[[]([club].{5,15})[|](.{1,125})[]]', r'<a href="https://vk.com/\1">\2</a>', text)
         text = re.sub(r'#([\w.,@?^=%&:/~+#-]*)', r'<a href="https://vk.com/feed?section=search&q=%23\1">#\1</a>', text)
         post_id = cont['id']
         
@@ -76,8 +76,8 @@ def check_news(offset):
             cauthor_name = cauthor['name'] + "@" + f"https://vk.com/{cauthor['screen_name']}?w=wall-{cauthor['id']}_{cont['id']}%2Fall"
             cposting_date = make_aware(datetime.datetime.fromtimestamp(cont['date']))
             ctext = cont['text']
-            ctext = re.sub(r'[[]([club].{5,15})[|](.{1,125})[]]', r'<a href="https://vk.com/\1">\2</a>', ctext)
             ctext = re.sub(r'((http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?)', r'<a href="\1">\1</a>', ctext)
+            ctext = re.sub(r'[[]([club].{5,15})[|](.{1,125})[]]', r'<a href="https://vk.com/\1">\2</a>', ctext)
             ctext = re.sub(r'#([\w.,@?^=%&:/~+#-]*)', r'<a href="https://vk.com/feed?section=search&q=%23\1">#\1</a>', ctext)
             cpost_id = cont['id']
             post_copy, created = Posts.objects.get_or_create(posting_date=cposting_date, post_id=cpost_id, defaults={"author_image":cauthor_image, "author_name":cauthor_name, "text":ctext, "main_history":post_main})
