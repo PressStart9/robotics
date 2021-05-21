@@ -5,12 +5,12 @@
 {% for val in wall_content %}
     {% if not val.main_history %}
         <div class="post_header" style="overflow: hidden; margin-top: 20px">
-                        <a class="post_image" href="{{ val.author_name|Cutthecrap:1 }}">
+                        <a class="post_image" href="{{ val.author_name|Cutthecrap:1 }}" target="_blank">
                             <img src="{{ val.author_image }}" align="left" width="50" height="50" class="post_img">
                         </a>
 
                         <div class="post_header_info" style="margin-left: 60px">
-                            <h5 class="post_author"><a class="author" href="{{ val.author_name|Cutthecrap:1 }}">{{ val.author_name|Cutthecrap:0 }}</a></h5>
+                            <h5 class="post_author"><a class="author" href="{{ val.author_name|Cutthecrap:1 }}" target="_blank">{{ val.author_name|Cutthecrap:0 }}</a></h5>
                             <div class="post_date" style="margin: -4px 10px 0px -3px;">{{ val.posting_date|date:"d/m/Y" }}</div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                             {% endif %}
                             {% if attach.type == 'link' %}
                                 <div class="linkdiv" style="padding-left: 3%; border-left:2px solid #ccc; overflow: hidden; margin-top: 5px; display: block;">
-                                    <a href="{{ attach.url|Cutthecrap:1 }}">
+                                    <a href="{{ attach.url|Cutthecrap:1 }}" target="_blank">
                                         {% if attach.preview != '0' %}
                                             <img src="{{ attach.preview }}" style="max-height: 100%; max-width: 100%; border-radius: 20px">
                                         {% endif %}
@@ -104,12 +104,12 @@
         {% if val.copy_history.all.0 %}
             <div style="padding-left: 3%; border-left:2px solid #ccc; overflow: hidden; margin-top: 5px" class="copy_container">
                     <div class="copy_post_header">
-                        <a class="copy_post_image" href="{{ val.copy_history.all.0.author_name|Cutthecrap:1 }}">
+                        <a class="copy_post_image" href="{{ val.copy_history.all.0.author_name|Cutthecrap:1 }}" target="_blank">
                             <img src="{{ val.copy_history.all.0.author_image }}" align="left" width="50" height="50" class="post_img">
                         </a>
 
                         <div class="copy_post_header_info" style="margin-left: 60px">
-                             <h5 class="post_author"><a class="author" href="{{ val.copy_history.all.0.author_name|Cutthecrap:1 }}">{{ val.copy_history.all.0.author_name|Cutthecrap:0 }}</a></h5>
+                             <h5 class="post_author"><a class="author" href="{{ val.copy_history.all.0.author_name|Cutthecrap:1 }}" target="_blank">{{ val.copy_history.all.0.author_name|Cutthecrap:0 }}</a></h5>
                              <div class="post_date" style="margin: -4px 10px 0px -3px;">{{ val.copy_history.all.0.posting_date|date:"d/m/Y" }}</div>
                         </div>
                       </div>
@@ -152,7 +152,7 @@
                                     {% endif %}
                                     {% if attach.type == 'link' %}
                                         <div class="linkdiv" style="padding-left: 3%; border-left:2px solid #ccc; overflow: hidden; margin-top: 5px; display: block;">
-                                            <a href="{{ attach.url|Cutthecrap:1 }}">
+                                            <a href="{{ attach.url|Cutthecrap:1 }}" target="_blank">
                                                 {% if attach.preview != '0' %}
                                                     <img src="{{ attach.preview }}" style="max-height: 100%; max-width: 100%; border-radius: 20px">
                                                 {% endif %}
